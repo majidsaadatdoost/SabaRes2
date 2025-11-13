@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saba Sedighi | R&D Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a5a73;
+            --text-color: #555;
+            --bg-color: #e0e5ec;
+            --border-radius: 20px;
+            --shadow-light: #ffffff;
+            --shadow-dark: #a3b1c6;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        }
+
+        .resume-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+
+            /* Glassmorphism Effect */
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        /* Animated background shapes */
+        .resume-container::before, .resume-container::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .resume-container::before {
+            width: 300px;
+            height: 300px;
+            background: rgba(108, 133, 224, 0.3);
+            top: -10%;
+            left: -15%;
+        }
+
+        .resume-container::after {
+            width: 250px;
+            height: 250px;
+            background: rgba(224, 108, 168, 0.3);
+            bottom: -15%;
+            right: -10%;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-30px); }
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: 2rem;
+            gap: 2rem;
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            /* Neumorphism Effect */
+            box-shadow: 
+                -8px -8px 15px var(--shadow-light),
+                8px 8px 15px var(--shadow-dark),
+                inset -5px -5px 10px var(--shadow-light),
+                inset 5px 5px 10px var(--shadow-dark);
+            padding: 8px;
+        }
+
+        .header-text {
+            flex-grow: 1;
+        }
+
+        .header-text h1 {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+
+        .header-text h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .contact-info li {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            transition: color var(--transition-speed);
+        }
+
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .contact-info li:hover,
+        .contact-info li:hover a {
+            color: var(--primary-color);
+        }
+        
+        .contact-info i {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            transition: transform var(--transition-speed);
+            width: 25px;
+            text-align: center;
+        }
+
+        .contact-info li:hover i {
+            transform: scale(1.15);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .resume-section {
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            transition: transform var(--transition-speed) ease-out, box-shadow var(--transition-speed) ease-out;
+            opacity: 0;
+            transform: translateY(30px);
+            
+            /* Neumorphism Effect */
+            background-color: var(--bg-color);
+            box-shadow: 
+                -8px -8px 15px var(--shadow-light),
+                8px 8px 15px var(--shadow-dark);
+        }
+
+        .resume-section.is-visible {
+             opacity: 1;
+             transform: translateY(0);
+        }
+
+        .resume-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                -12px -12px 20px var(--shadow-light),
+                12px 12px 20px var(--shadow-dark);
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .resume-section p {
+            line-height: 1.7;
+        }
+
+        .resume-section ul {
+            list-style: none;
+            padding-left: 0.5rem;
+        }
+
+        .resume-section ul li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .resume-section ul li::before {
+            content: '\f058'; 
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--primary-color);
+            font-size: 1rem;
+            transition: transform var(--transition-speed);
+        }
+
+        .resume-section ul li:hover::before {
+            transform: scale(1.2);
+        }
+        
+        .experience-item {
+            margin-bottom: 1.5rem;
+        }
+        .experience-item h4 {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .experience-item p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .certificates-list li {
+            margin-bottom: 1rem;
+        }
+        .certificates-list strong {
+            display: block;
+        }
+        .certificates-list span {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .tools-section {
+            margin-top: 1rem;
+        }
+
+        .tools-category {
+            margin-bottom: 1rem;
+        }
+        
+        .tools-category h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+        
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .tool-tag {
+            background: var(--bg-color);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all var(--transition-speed);
+            box-shadow: 
+                -5px -5px 10px var(--shadow-light),
+                5px 5px 10px var(--shadow-dark);
+        }
+
+        .tool-tag:hover {
+            color: var(--primary-color);
+            box-shadow: 
+                inset -3px -3px 7px var(--shadow-light),
+                inset 3px 3px 7px var(--shadow-dark);
+        }
+
+        @media (max-width: 992px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            .resume-container {
+                padding: 1.5rem;
+            }
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .contact-info {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .header-text h1 {
+                font-size: 2.2rem;
+            }
+            .header-text h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container">
+        <header>
+            <div class="header-text">
+                <h1>Saba Sedighi</h1>
+                <h2>Research & Development Manager</h2>
+                <ul class="contact-info">
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i>Tehran, Iran</a></li>
+                    <li><a href="mailto:saba.sediqi@proton.me"><i class="fas fa-envelope"></i>saba.sediqi@proton.me</a></li>
+                    <li><a href="tel:+989309684667"><i class="fas fa-phone-alt"></i>+98 930 968 4667</a></li>
+                    <!-- ADDED BUTTONS -->
+                    <li><a id="saveContactBtn" download="Saba_Sedighi.vcf"><i class="fas fa-address-card"></i>Save Contact</a></li>
+                    <li><a id="shareBtn"><i class="fas fa-share-alt"></i>Share Profile</a></li>
+                </ul>
+            </div>
+            <img src="pro.jpg" alt="Saba Sedighi - Profile Picture" class="profile-picture">
+        </header>
+
+        <main>
+            <section class="resume-section full-width" id="summary">
+                <h3 class="section-title">Professional Summary</h3>
+                <p>
+                    Dynamic R&D Manager with hands-on experience in startup ecosystems, business development, and innovation management. Skilled in leveraging AI tools and automation platforms to optimize processes, enhance learning systems, and drive product growth. Passionate about knowledge sharing, continuous improvement, and building scalable, tech-driven solutions for modern organizations.
+                </p>
+            </section>
+
+            <section class="resume-section" id="competencies">
+                <h3 class="section-title">Core Competencies</h3>
+                <h4>Product Development & Innovation</h4>
+                <ul>
+                    <li>Led end-to-end product and service development</li>
+                    <li>Designed customer-centric improvements to increase adoption and engagement.</li>
+                    <li>Executed R&D roadmaps aligned with organizational goals.</li>
+                    <li>Analyzed global market trends, competitors, and customer insights.</li>
+                    <li>Supported the development of strategic partnerships and collaborations.</li>
+                    <li>Managed research documentation and content management systems.</li>
+                    <li>Collaborated with marketing teams on content strategy and digital campaigns.</li>
+                </ul>
+                <br>
+                <h4>AI & Process Optimization</h4>
+                 <ul>
+                    <li>Directed AI-driven process automation and Improved operational efficiency</li>
+                    <li>Built workflow automations using tools such as N8N, Zapier, and HubSpot.</li>
+                </ul>
+            </section>
+
+            <section class="resume-section" id="competencies-2">
+                 <h3 class="section-title">Core Competencies (Cont.)</h3>
+                 <h4>Learning & Knowledge Management</h4>
+                 <ul>
+                    <li>Implemented and maintained Learning Management Systems (Moodle, Thinkific).</li>
+                    <li>Developed standardized training materials and promoted knowledge sharing across teams.</li>
+                </ul>
+                <br>
+                <h4>Marketing & Communication</h4>
+                 <ul>
+                    <li>Managed social media channels and newsletters, increasing user engagement and retention.</li>
+                    <li>Produced educational and promotional multimedia content (Camtasia, Canva, Hootsuite).</li>
+                </ul>
+            </section>
+
+            <section class="resume-section full-width" id="experience">
+                <h3 class="section-title">Professional Experience</h3>
+                <div class="experience-item">
+                    <h4>VIP GROUP Holding</h4>
+                    <p>AUG 2025 - OCT 2025</p>
+                </div>
+                 <div class="experience-item">
+                    <h4>Ideh Mandegar Barman</h4>
+                    <p>APR 2023 - JUN 2025</p>
+                </div>
+                 <div class="experience-item">
+                    <h4>Private firm in startup investment and development</h4>
+                    <p>FEB 2022 - APR 2023</p>
+                </div>
+                 <div class="experience-item">
+                    <h4>Freelance</h4>
+                    <p>SEP 2019 - JAN 2022</p>
+                </div>
+            </section>
+            
+            <section class="resume-section" id="education">
+                <h3 class="section-title">Education</h3>
+                <h4>BSc in Computer Networking and Communications</h4>
+                <p>Shahrood University of Technology | 2014 – 2018</p>
+            </section>
+
+            <section class="resume-section" id="certificates">
+                <h3 class="section-title">Certificates</h3>
+                <ul class="certificates-list">
+                    <li><strong>N8N: Build Automations from Scratch</strong><span>Udemy (2025)</span></li>
+                    <li><strong>Artificial Intelligence and Business Strategy</strong><span>Udemy (2025)</span></li>
+                    <li><strong>Business Growth Strategy</strong><span>Coursera (2025)</span></li>
+                    <li><strong>Harnessing AI: Business Growth & Strategic Decision-Making</strong><span>Udemy (2025)</span></li>
+                    <li><strong>The Fundamentals of Digital Marketing</strong><span>Google Digital Garage (2020)</span></li>
+                </ul>
+            </section>
+
+            <section class="resume-section full-width" id="skills">
+                <h3 class="section-title">Language & Tools</h3>
+                 <div class="tools-section">
+                    <div class="tools-category">
+                        <h4>Language Proficiency</h4>
+                        <div class="tools-list">
+                            <span class="tool-tag">English: Intermediate – Working Proficiency</span>
+                        </div>
+                    </div>
+                    <div class="tools-category">
+                        <h4>Tools & Platforms</h4>
+                        <div class="tools-list">
+                            <span class="tool-tag">N8N</span>
+                            <span class="tool-tag">Zapier</span>
+                            <span class="tool-tag">HubSpot</span>
+                            <span class="tool-tag">Bitrix24</span>
+                            <span class="tool-tag">Trello</span>
+                            <span class="tool-tag">Canva</span>
+                            <span class="tool-tag">Camtasia</span>
+                            <span class="tool-tag">Hootsuite</span>
+                            <span class="tool-tag">Mailchimp</span>
+                            <span class="tool-tag">Moodle (LMS)</span>
+                            <span class="tool-tag">Thinkific</span>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const sections = document.querySelectorAll('.resume-section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- ADDED SCRIPT FOR NEW BUTTONS ---
+
+            // Save Contact Functionality
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Saba Sedighi
+TITLE:Research & Development Manager
+TEL;TYPE=CELL:+98 930 968 4667
+EMAIL:saba.sediqi@proton.me
+ADR;TYPE=WORK:;;;Tehran;;;Iran
+END:VCARD`;
+            
+            const saveContactBtn = document.getElementById('saveContactBtn');
+            saveContactBtn.href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vCardData);
+
+            // Share Profile Functionality
+            const shareBtn = document.getElementById('shareBtn');
+            
+            shareBtn.addEventListener('click', async (event) => {
+                event.preventDefault(); // Prevent the link from navigating anywhere
+
+                const shareData = {
+                    title: "Saba Sedighi's Resume",
+                    text: "Check out Saba Sedighi's professional resume.",
+                    url: 'https://google.com' // <-- CHANGE THIS URL LATER
+                };
+
+                if (navigator.share) {
+                    try {
+                        await navigator.share(shareData);
+                    } catch (err) {
+                        console.error('Error sharing:', err);
+                    }
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    try {
+                        await navigator.clipboard.writeText(shareData.url);
+                        const originalHTML = shareBtn.innerHTML;
+                        shareBtn.innerHTML = '<i class="fas fa-check"></i> Link Copied!';
+                        setTimeout(() => {
+                            shareBtn.innerHTML = originalHTML;
+                        }, 2000);
+                    } catch (err) {
+                        alert('Failed to copy link.');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
